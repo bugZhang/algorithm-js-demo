@@ -1,29 +1,26 @@
+
 function quickSort(arr){
 
-	var length = arr.length;
-	var i ,left = [],right = [],leftTemp,rightTemp, point = length >> 1;
+	if(arr.length < 2){
+		return arr;
+	}
 
-	console.log(length, point);
+	var pivotIndex = Math.floor(arr.length / 2);
+	var pivot = arr.splice(arr, 1)[0];
+	var i,left = [], right = [];
 
-	while(rightTemp != 0 && leftTemp != 0){
-		leftTemp = 0; rightTemp = 0;
-		for(i = 0; i < length;i++){
-			console.log(arr[i]);
-			return 0;
-			if(arr[i] > arr[point]){
-				rightTemp = arr[i];
-				right.push(arr[i]);
-			}else{
-				leftTemp = arr[i];
-				left.push(arr[i]);
-			}
+	for(i = 0; i<arr.length;i++){
+		if(arr[i] < pivot){
+			left.push(arr[i]);
+		}else{
+			right.push(arr[i]);
 		}
 	}
 
-	console.log(left, rightTemp);
+	return quickSort(left).concat([pivot], quickSort(right));
 
 }
 
 var arr = [5, 6, 1, 3, 8, 9, 7];
 
-quickSort(arr);
+console.log(quickSort(arr));
